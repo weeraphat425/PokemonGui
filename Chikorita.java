@@ -15,8 +15,8 @@ public class Chikorita extends Pokemon implements Runnable {
 		super("Chikorita",
 		      80,60.00);
 
-		this.attackSkill = PokemonSkill.getPokemonSkill("Scratch");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("GrainAmmunition");
+		this.attackSkill = PokemonSkill.getPokemonSkill("Tackle");
+		this.untimatedSkill = PokemonSkill.getPokemonSkill("Power Whip");
 	}
 
 	public void move(){
@@ -24,8 +24,12 @@ public class Chikorita extends Pokemon implements Runnable {
 	}
         public void level(){
                 float random = (float) (0 + Math.random() * 1);
-                this.level += random;
+                this.experience += 10*random;
                 this.health -= random;
+                if(this.experience >= 100){
+                    this.level ++;
+                    this.experience = (float) 0.0;
+                }
         }
 	public void run(){
 		this.reducedWeight(1.5);

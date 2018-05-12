@@ -45,7 +45,7 @@ public class Command extends JFrame{
     public static String printPokemons(ArrayList<Pokemon> pokemons,int member){
         String hp = "======== Pokemon List ======== \n"+"Pokemon "+
                 pokemons.get(member).getName()+" health: "+pokemons.get(member).getHealth()
-                +"/"+pokemons.get(member).maxHealth+"\nPokemonLevel :"+pokemons.get(member).getLevel();
+                +"/"+pokemons.get(member).maxHealth+"\nPokemonLevel :"+pokemons.get(member).getLevel()+" Exp:"+pokemons.get(member).getExperience()+"/100.00";
         String weight = "\n======== Pokemon Weight ======== \n"+" Weight: "+
                 pokemons.get(member).getWeight();
         return hp+weight;

@@ -15,7 +15,8 @@ abstract class Pokemon{
 	protected String name;
 	protected PokemonSkill attackSkill;
 	protected PokemonSkill untimatedSkill;
-        protected float level;
+        protected int level;
+        protected float experience;
 
 	public Pokemon(String name, double maxHealth,double weight){
 		this.name      = name;
@@ -23,21 +24,24 @@ abstract class Pokemon{
 		this.maxHealth = maxHealth;
                 this.weight    = weight;
                 this.level = 1;
+                this.experience = (float) 0.0;
 	}
         
         public double getWeight(){
-            return this.weight;
+                return this.weight;
         }
-
 	public double getHealth(){
 		return this.health;
 	}
-        public float getLevel(){
+        public int getLevel(){
                 return this.level;
         }
 	public String getName(){
 		return this.name;
 	}
+        public float getExperience(){
+                return this.experience;
+        }
 	
 	public void eat(Berry berry){
 		this.health += berry.getRestoreValue();
@@ -68,7 +72,7 @@ abstract class Pokemon{
         
         public void reducedWeight(double value){
 		this.weight -= value;
-		if(this.weight < 40)
+		if(this.weight < 30)
 			this.weight = 40;
 	}
 

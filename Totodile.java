@@ -25,8 +25,12 @@ public class Totodile extends Pokemon implements Swimmable{
 	}
         public void level(){
                 float random = (float) (0 + Math.random() * 1);
-                this.level += random;
+                this.experience += 10*random;
                 this.health -= random;
+                if(this.experience >= 100){
+                    this.level ++;
+                    this.experience = (float) 0.0;
+                }
         }
         @Override
 	public void swim(){

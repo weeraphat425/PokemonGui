@@ -14,8 +14,8 @@ public class Charmander extends Pokemon implements Runnable {
 	public Charmander(){
 		super("Charmander",
 		       100,80.);
-		this.attackSkill = PokemonSkill.getPokemonSkill("Crash");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("Fired");
+		this.attackSkill = PokemonSkill.getPokemonSkill("Ember");
+		this.untimatedSkill = PokemonSkill.getPokemonSkill("Flame Burst");
 	}
 
 	public void move(){
@@ -23,8 +23,12 @@ public class Charmander extends Pokemon implements Runnable {
 	}
         public void level(){
                 float random = (float) (0 + Math.random() * 1);
-                this.level += random;
+                this.experience += 10*random;
                 this.health -= random;
+                if(this.experience >= 100){
+                    this.level ++;
+                    this.experience = (float) 0.0;
+                }
         }
 	public void run(){
 		this.reducedWeight(1.5);
