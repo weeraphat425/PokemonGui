@@ -13,10 +13,11 @@ public class Chikorita extends Pokemon implements Runnable {
        private static final int maxGroupHealth = 200;
 	public  Chikorita(){    
 		super("Chikorita",
-		      80,60.00);
-
-		this.attackSkill = PokemonSkill.getPokemonSkill("Tackle");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("Power Whip");
+		      100,60.00);
+                this.attackSkillName = "Vine Whip";
+                this.attackSkillDamage = 7;
+                this.ultimateSkillName = "Grass Knot";
+                this.ultimateSkillDamage = 15;
 	}
 
 	public void move(){
@@ -24,7 +25,7 @@ public class Chikorita extends Pokemon implements Runnable {
 	}
         public void level(){
                 float random = (float) (0 + Math.random() * 1);
-                this.experience += 10*random;
+                this.experience += 100*random;
                 this.health -= random;
                 if(this.experience >= 100){
                     this.level ++;

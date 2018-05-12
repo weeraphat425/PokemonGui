@@ -15,8 +15,10 @@ public class Totodile extends Pokemon implements Swimmable{
 	public Totodile(){
 		super("Totodile",
                         100,70.00);
-		this.attackSkill = PokemonSkill.getPokemonSkill("Tail Whip");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("Water Pulse");
+                this.attackSkillName = "Scratch";
+                this.attackSkillDamage = 6;
+                this.ultimateSkillName = "Aqua Jet";
+                this.ultimateSkillDamage = 12;
 	}
 
        @Override
@@ -25,7 +27,7 @@ public class Totodile extends Pokemon implements Swimmable{
 	}
         public void level(){
                 float random = (float) (0 + Math.random() * 1);
-                this.experience += 10*random;
+                this.experience += 100*random;
                 this.health -= random;
                 if(this.experience >= 100){
                     this.level ++;

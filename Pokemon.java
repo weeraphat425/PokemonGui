@@ -10,13 +10,13 @@ package PokemonGui;
  * @author Fook
  */
 abstract class Pokemon{
-	public final double maxHealth;
+	protected double maxHealth;
 	protected double health,weight;
 	protected String name;
-	protected PokemonSkill attackSkill;
-	protected PokemonSkill untimatedSkill;
         protected int level;
         protected float experience;
+        protected String attackSkillName,ultimateSkillName;
+        protected int attackSkillDamage,ultimateSkillDamage;
 
 	public Pokemon(String name, double maxHealth,double weight){
 		this.name      = name;
@@ -26,7 +26,21 @@ abstract class Pokemon{
                 this.level = 1;
                 this.experience = (float) 0.0;
 	}
-        
+        public String getAttackSkillName(){
+                return this.attackSkillName;     
+        }
+        public int getAttackSkillDamage(){
+                return this.attackSkillDamage;     
+        }
+        public String getUltimateSkillName(){
+                return this.ultimateSkillName;
+        }
+        public int getUltimateSkillDamage(){
+                return this.ultimateSkillDamage;     
+        }
+        public void changeName(String name){
+                this.name = name;
+        }
         public double getWeight(){
                 return this.weight;
         }
@@ -36,13 +50,22 @@ abstract class Pokemon{
         public int getLevel(){
                 return this.level;
         }
+        public void setHealth(double maxHealth){
+                this.maxHealth = maxHealth;
+                this.health = maxHealth;
+        }
 	public String getName(){
 		return this.name;
 	}
         public float getExperience(){
                 return this.experience;
         }
-	
+	public void changeSkill(String attackSkillName,int attackSkillDamage,String ultimateSkillName,int ultimateSkillDamage){
+            this.attackSkillName = attackSkillName;
+            this.attackSkillDamage = attackSkillDamage;
+            this.ultimateSkillName = ultimateSkillName;
+            this.ultimateSkillDamage = ultimateSkillDamage;
+        }
 	public void eat(Berry berry){
 		this.health += berry.getRestoreValue();
 		if(this.health > this.maxHealth)
@@ -51,19 +74,6 @@ abstract class Pokemon{
                 if(this.health <= 0)
                         this.health = 0;
 	}
-
-	public void attack(Pokemon rival){
-		rival.injure(this.attackSkill);
-	}
-
-	public void untimate(Pokemon rival){
-		rival.injure(this.untimatedSkill);
-	}
-
-	public void injure(PokemonSkill skill){
-		this.reducedHealth(skill.getDamage());
-	}
-
 	public void reducedHealth(double value){
 		this.health -= value;
 		if(this.health <= 0)
