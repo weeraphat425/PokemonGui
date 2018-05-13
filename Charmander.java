@@ -24,12 +24,21 @@ public class Charmander extends Pokemon implements Runnable {
 		this.run();
 	}
         public void level(){
+            if(this.level >= 99){
+                this.level = 99;
+                this.experience = 100;
+                if(this.name == "Charizard"){
+                    this.godMode = "YES";
+                }
+            }
+            else{
                 float random = (float) (0 + Math.random() * 1);
                 this.experience += 100*random;
                 this.health -= random;
                 if(this.experience >= 100){
-                    this.level ++;
+                    this.level += 10;
                     this.experience = (float) 0.0;
+                    }
                 }
         }
 	public void run(){

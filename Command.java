@@ -34,18 +34,18 @@ public class Command extends JFrame{
     JPanel p1,showData;
     JLabel txtSelect,pokemonIcon;
     JTextField jTextField; //
-    JButton newButton,eatButton,exerciseButton,battleButton,evoButton;
+    JButton newButton,eatButton,exerciseButton,battleButton,evoButton,godButton;
     JTextArea printProFile,battleArea;
-    Icon dataIcon0,dataIcon1,dataIcon2,dataIcon3,dataIcon4,dataIcon5,dataIcon6,dataIcon7,dataIcon8,dataIconStart;
+    Icon dataIcon0,dataIcon1,dataIcon2,dataIcon3,dataIcon4,dataIcon5,dataIcon6,dataIcon7,dataIcon8,dataIconStart,dataIconGod1,dataIconGod2,dataIconGod3;
     JComboBox select;
-    int  membershipOfCharmander, 
-         membershipOfChikorita,
-         membershipOfTotodile;
+    int  memberTypeFire, 
+         memberTypePlant,
+         memberTypeWater;
     //***************************************************************************************
     public static String printPokemons(ArrayList<Pokemon> pokemons,int member){
         String hp = "======== Pokemon List ======== \n"+"Pokemon "+
                 pokemons.get(member).getName()+" health: "+pokemons.get(member).getHealth()
-                +"/"+pokemons.get(member).maxHealth+"\nPokemonLevel :"+pokemons.get(member).getLevel()+" Exp:"+pokemons.get(member).getExperience()+"/100.00";
+                +"/"+pokemons.get(member).maxHealth+"\nPokemonLevel :"+pokemons.get(member).getLevel()+" Exp:"+pokemons.get(member).getExperience()+"/100.00"+"\nCan Change to GOD:"+pokemons.get(member).getGodMode();
         String weight = "\n======== Pokemon Weight ======== \n"+" Weight: "+
                 pokemons.get(member).getWeight();
         String skill = "\n======== Pokemon Skill ======== \n"+" Attack Skill Name: "+
@@ -93,6 +93,9 @@ public class Command extends JFrame{
         dataIcon6     = new ImageIcon(getClass().getResource("Charizard.png"));
         dataIcon7     = new ImageIcon(getClass().getResource("Meganium.jpg"));
         dataIcon8     = new ImageIcon(getClass().getResource("Feraligatr.png"));
+        dataIconGod1     = new ImageIcon(getClass().getResource("Ho-Oh.png"));
+        dataIconGod2     = new ImageIcon(getClass().getResource("Celebi.png"));
+        dataIconGod3     = new ImageIcon(getClass().getResource("Lugia.png"));
         pokemonIcon   = new JLabel("");
         pokemonIcon.setIcon(dataIconStart);
          
@@ -102,6 +105,7 @@ public class Command extends JFrame{
         battleButton = new JButton("Battle");
         exerciseButton = new JButton("Exercise");
         evoButton = new JButton("Evolution");
+        godButton = new JButton("GOD");
         pokemons.add(new Charmander());
         pokemons.add(new Chikorita());
         pokemons.add(new Totodile());
@@ -113,45 +117,45 @@ public class Command extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 switch (select.getSelectedIndex()) {
                     case 0:               
-                        membershipOfCharmander = 0;
-                        if(pokemons.get(membershipOfCharmander).getName() == "Charmander"){
+                        memberTypeFire = 0;
+                        if(pokemons.get(memberTypeFire).getName() == "Charmander"){
                             pokemonIcon.setIcon(dataIcon0);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charmelon"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charmelon"){
                             pokemonIcon.setIcon(dataIcon3);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charizard"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charizard"){
                             pokemonIcon.setIcon(dataIcon6);
                         }
-                        printProFile.setText(printPokemons(pokemons,membershipOfCharmander));
+                        printProFile.setText(printPokemons(pokemons,memberTypeFire));
                         System.out.print("Charmander"+select.getSelectedIndex());
                         break;
                     case 1:    
-                        membershipOfChikorita = 1;
-                        if(pokemons.get(membershipOfChikorita).getName() == "Chikorita"){
+                        memberTypePlant = 1;
+                        if(pokemons.get(memberTypePlant).getName() == "Chikorita"){
                             pokemonIcon.setIcon(dataIcon1);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Bayleef"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Bayleef"){
                             pokemonIcon.setIcon(dataIcon4);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Meganium"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Meganium"){
                             pokemonIcon.setIcon(dataIcon7);
                         }
-                        printProFile.setText(printPokemons(pokemons,membershipOfChikorita));
+                        printProFile.setText(printPokemons(pokemons,memberTypePlant));
                         System.out.print("Chikorita"+select.getSelectedIndex());
                         break;
                     case 2:    
-                        membershipOfTotodile = 2;
-                        if(pokemons.get(membershipOfTotodile).getName() == "Totodile"){
+                        memberTypeWater = 2;
+                        if(pokemons.get(memberTypeWater).getName() == "Totodile"){
                             pokemonIcon.setIcon(dataIcon2);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Croconaw"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Croconaw"){
                             pokemonIcon.setIcon(dataIcon5);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Feraligatr"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Feraligatr"){
                             pokemonIcon.setIcon(dataIcon8);
                         }
-                        printProFile.setText(printPokemons(pokemons,membershipOfTotodile));
+                        printProFile.setText(printPokemons(pokemons,memberTypeWater));
                         System.out.print("Totodile"+select.getSelectedIndex());
                         break;
                     default:
@@ -167,42 +171,42 @@ public class Command extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 switch (select.getSelectedIndex()) {
                     case 0:
-                        eatBerry(membershipOfCharmander);
-                        if(pokemons.get(membershipOfCharmander).getName() == "Charmander"){
+                        eatBerry(memberTypeFire);
+                        if(pokemons.get(memberTypeFire).getName() == "Charmander"){
                             pokemonIcon.setIcon(dataIcon0);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charmelon"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charmelon"){
                             pokemonIcon.setIcon(dataIcon3);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charizard"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charizard"){
                             pokemonIcon.setIcon(dataIcon6);
                         }
                         System.out.print("Charmander eat"+ select.getSelectedIndex());
                         break;
                     case 1:
-                        if(pokemons.get(membershipOfChikorita).getName() == "Chikorita"){
+                        if(pokemons.get(memberTypePlant).getName() == "Chikorita"){
                             pokemonIcon.setIcon(dataIcon1);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Bayleef"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Bayleef"){
                             pokemonIcon.setIcon(dataIcon4);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Meganium"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Meganium"){
                             pokemonIcon.setIcon(dataIcon7);
                         }
-                        eatBerry(membershipOfChikorita);
+                        eatBerry(memberTypePlant);
                         System.out.print("Chikorita eat"+ select.getSelectedIndex());
                         break;
                     case 2:
-                        if(pokemons.get(membershipOfTotodile).getName() == "Totodile"){
+                        if(pokemons.get(memberTypeWater).getName() == "Totodile"){
                             pokemonIcon.setIcon(dataIcon2);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Croconaw"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Croconaw"){
                             pokemonIcon.setIcon(dataIcon5);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Feraligatr"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Feraligatr"){
                             pokemonIcon.setIcon(dataIcon8);
                         }
-                        eatBerry(membershipOfTotodile);
+                        eatBerry(memberTypeWater);
                         System.out.print("Totodile eat"+ select.getSelectedIndex());
                         break;
                     default:
@@ -218,45 +222,45 @@ public class Command extends JFrame{
             public void actionPerformed(ActionEvent e) {
                  switch (select.getSelectedIndex()) {
                     case 0:
-                        if(pokemons.get(membershipOfCharmander).getName() == "Charmander"){
+                        if(pokemons.get(memberTypeFire).getName() == "Charmander"){
                             pokemonIcon.setIcon(dataIcon0);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charmelon"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charmelon"){
                             pokemonIcon.setIcon(dataIcon3);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charizard"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charizard"){
                             pokemonIcon.setIcon(dataIcon6);
                         }
-                        pokemons.get(membershipOfCharmander).move();
-                        printProFile.setText(printPokemons(pokemons,membershipOfCharmander));
+                        pokemons.get(memberTypeFire).move();
+                        printProFile.setText(printPokemons(pokemons,memberTypeFire));
                         System.out.print("Exercise"+select.getSelectedIndex());
                         break;
                     case 1:
-                        if(pokemons.get(membershipOfChikorita).getName() == "Chikorita"){
+                        if(pokemons.get(memberTypePlant).getName() == "Chikorita"){
                             pokemonIcon.setIcon(dataIcon1);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Bayleef"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Bayleef"){
                             pokemonIcon.setIcon(dataIcon4);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Meganium"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Meganium"){
                             pokemonIcon.setIcon(dataIcon7);
                         }
-                        pokemons.get(membershipOfChikorita).move();
-                        printProFile.setText(printPokemons(pokemons,membershipOfChikorita));
+                        pokemons.get(memberTypePlant).move();
+                        printProFile.setText(printPokemons(pokemons,memberTypePlant));
                         System.out.print("Exercise"+select.getSelectedIndex());
                         break;
                     case 2:
-                        if(pokemons.get(membershipOfTotodile).getName() == "Totodile"){
+                        if(pokemons.get(memberTypeWater).getName() == "Totodile"){
                             pokemonIcon.setIcon(dataIcon2);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Croconaw"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Croconaw"){
                             pokemonIcon.setIcon(dataIcon5);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Feraligatr"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Feraligatr"){
                             pokemonIcon.setIcon(dataIcon8);
                         }
-                        pokemons.get(membershipOfTotodile).move();
-                        printProFile.setText(printPokemons(pokemons,membershipOfTotodile));
+                        pokemons.get(memberTypeWater).move();
+                        printProFile.setText(printPokemons(pokemons,memberTypeWater));
                         System.out.print("Exercise "+select.getSelectedIndex());
                         break;
                     default:
@@ -271,45 +275,45 @@ public class Command extends JFrame{
             public void actionPerformed(ActionEvent e) {
                  switch (select.getSelectedIndex()) {
                     case 0:
-                        if(pokemons.get(membershipOfCharmander).getName() == "Charmander"){
+                        if(pokemons.get(memberTypeFire).getName() == "Charmander"){
                             pokemonIcon.setIcon(dataIcon0);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charmelon"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charmelon"){
                             pokemonIcon.setIcon(dataIcon3);
                         }
-                        else if(pokemons.get(membershipOfCharmander).getName() == "Charizard"){
+                        else if(pokemons.get(memberTypeFire).getName() == "Charizard"){
                             pokemonIcon.setIcon(dataIcon6);
                         }
-                        pokemons.get(membershipOfCharmander).level();
-                        printProFile.setText(printPokemons(pokemons,membershipOfCharmander));
+                        pokemons.get(memberTypeFire).level();
+                        printProFile.setText(printPokemons(pokemons,memberTypeFire));
                         System.out.print("Fight Monster"+select.getSelectedIndex());
                         break;
                     case 1:
-                        if(pokemons.get(membershipOfChikorita).getName() == "Chikorita"){
+                        if(pokemons.get(memberTypePlant).getName() == "Chikorita"){
                             pokemonIcon.setIcon(dataIcon1);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Bayleef"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Bayleef"){
                             pokemonIcon.setIcon(dataIcon4);
                         }
-                        else if(pokemons.get(membershipOfChikorita).getName() == "Meganium"){
+                        else if(pokemons.get(memberTypePlant).getName() == "Meganium"){
                             pokemonIcon.setIcon(dataIcon7);
                         }
-                        pokemons.get(membershipOfChikorita).level();
-                        printProFile.setText(printPokemons(pokemons,membershipOfChikorita));
+                        pokemons.get(memberTypePlant).level();
+                        printProFile.setText(printPokemons(pokemons,memberTypePlant));
                         System.out.print("Fight Monster"+select.getSelectedIndex());
                         break;
                     case 2:
-                        if(pokemons.get(membershipOfTotodile).getName() == "Totodile"){
+                        if(pokemons.get(memberTypeWater).getName() == "Totodile"){
                             pokemonIcon.setIcon(dataIcon2);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Croconaw"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Croconaw"){
                             pokemonIcon.setIcon(dataIcon5);
                         }
-                        else if(pokemons.get(membershipOfTotodile).getName() == "Feraligatr"){
+                        else if(pokemons.get(memberTypeWater).getName() == "Feraligatr"){
                             pokemonIcon.setIcon(dataIcon8);
                         }
-                        pokemons.get(membershipOfTotodile).level();
-                        printProFile.setText(printPokemons(pokemons,membershipOfTotodile));
+                        pokemons.get(memberTypeWater).level();
+                        printProFile.setText(printPokemons(pokemons,memberTypeWater));
                         System.out.print("Fight Monster"+select.getSelectedIndex());
                         break;
                     default:
@@ -322,21 +326,23 @@ public class Command extends JFrame{
             public void actionPerformed(ActionEvent e) {
                  switch (select.getSelectedIndex()) {
                     case 0:
-                        if(pokemons.get(membershipOfCharmander).level >= 50 && pokemons.get(membershipOfCharmander).getName() == "Charmelon"){
+                        if(pokemons.get(memberTypeFire).level >= 50 && pokemons.get(memberTypeFire).getName() == "Charmelon"){
                             pokemonIcon.setIcon(dataIcon6);
-                            pokemons.get(membershipOfCharmander).changeName("Charizard");
-                            pokemons.get(membershipOfCharmander).changeSkill("Fire Spin",14,"Over Heat",70);
-                            pokemons.get(membershipOfCharmander).setHealth(250);
-                            printProFile.setText(printPokemons(pokemons,membershipOfCharmander));
+                            pokemons.get(memberTypeFire).changeName("Charizard");
+                            pokemons.get(memberTypeFire).changeSkill("Fire Spin",14,"Over Heat",70);
+                            pokemons.get(memberTypeFire).setHealth(250);
+                            pokemons.get(memberTypeFire).setWeight(150);
+                            printProFile.setText(printPokemons(pokemons,memberTypeFire));
                             System.out.print("Charmelon Evolution"+select.getSelectedIndex());
                             break;
                         }
-                        else if(pokemons.get(membershipOfCharmander).level >= 30 && pokemons.get(membershipOfCharmander).getName() == "Charmander"){
+                        else if(pokemons.get(memberTypeFire).level >= 30 && pokemons.get(memberTypeFire).getName() == "Charmander"){
                             pokemonIcon.setIcon(dataIcon3);
-                            pokemons.get(membershipOfCharmander).changeName("Charmelon");
-                            pokemons.get(membershipOfCharmander).changeSkill("Fire Fang",10,"Flame Burst",20);
-                            pokemons.get(membershipOfCharmander).setHealth(150);
-                            printProFile.setText(printPokemons(pokemons,membershipOfCharmander));
+                            pokemons.get(memberTypeFire).changeName("Charmelon");
+                            pokemons.get(memberTypeFire).changeSkill("Fire Fang",10,"Flame Burst",20);
+                            pokemons.get(memberTypeFire).setHealth(150);
+                            pokemons.get(memberTypeFire).setWeight(100);
+                            printProFile.setText(printPokemons(pokemons,memberTypeFire));
                             System.out.print("Charmander Evolution"+select.getSelectedIndex());
                             break;
                         }
@@ -344,21 +350,23 @@ public class Command extends JFrame{
                             break;
                         }
                     case 1:
-                        if(pokemons.get(membershipOfChikorita).level >= 50 && pokemons.get(membershipOfChikorita).getName() == "Bayleef"){
+                        if(pokemons.get(memberTypePlant).level >= 50 && pokemons.get(memberTypePlant).getName() == "Bayleef"){
                             pokemonIcon.setIcon(dataIcon7);
-                            pokemons.get(membershipOfChikorita).changeName("Meganium");
-                            pokemons.get(membershipOfChikorita).changeSkill("Razor Leaf",12,"Solar Beam",60);
-                            pokemons.get(membershipOfChikorita).setHealth(300);
-                            printProFile.setText(printPokemons(pokemons,membershipOfChikorita));
+                            pokemons.get(memberTypePlant).changeName("Meganium");
+                            pokemons.get(memberTypePlant).changeSkill("Razor Leaf",12,"Solar Beam",60);
+                            pokemons.get(memberTypePlant).setHealth(300);
+                            pokemons.get(memberTypePlant).setWeight(300);
+                            printProFile.setText(printPokemons(pokemons,memberTypePlant));
                             System.out.print("Bayleef Evolution"+select.getSelectedIndex());
                             break;
                         }
-                        else if(pokemons.get(membershipOfChikorita).level >= 30 && pokemons.get(membershipOfChikorita).getName() == "Chikorita"){
+                        else if(pokemons.get(memberTypePlant).level >= 30 && pokemons.get(memberTypePlant).getName() == "Chikorita"){
                             pokemonIcon.setIcon(dataIcon4);
-                            pokemons.get(membershipOfChikorita).changeName("Bayleef");
-                            pokemons.get(membershipOfChikorita).changeSkill("Razor Leaf",12,"Energy Ball",30);
-                            pokemons.get(membershipOfChikorita).setHealth(180);
-                            printProFile.setText(printPokemons(pokemons,membershipOfCharmander));
+                            pokemons.get(memberTypePlant).changeName("Bayleef");
+                            pokemons.get(memberTypePlant).changeSkill("Razor Leaf",12,"Energy Ball",30);
+                            pokemons.get(memberTypePlant).setHealth(180);
+                            pokemons.get(memberTypePlant).setWeight(150);
+                            printProFile.setText(printPokemons(pokemons,memberTypeFire));
                             System.out.print("Chikorita Evolution"+select.getSelectedIndex());
                             break;
                         }
@@ -366,22 +374,75 @@ public class Command extends JFrame{
                             break;
                         }
                     case 2:
-                        if(pokemons.get(membershipOfTotodile).level >= 50 && pokemons.get(membershipOfTotodile).getName() == "Croconaw"){
+                        if(pokemons.get(memberTypeWater).level >= 50 && pokemons.get(memberTypeWater).getName() == "Croconaw"){
                             pokemonIcon.setIcon(dataIcon8);
-                            pokemons.get(membershipOfTotodile).changeName("Feraligatr");
-                            pokemons.get(membershipOfTotodile).changeSkill("Water Gun",10,"Hydro Pump",55);
-                            pokemons.get(membershipOfTotodile).setHealth(270);
-                            printProFile.setText(printPokemons(pokemons,membershipOfTotodile));
+                            pokemons.get(memberTypeWater).changeName("Feraligatr");
+                            pokemons.get(memberTypeWater).changeSkill("Water Gun",10,"Hydro Pump",55);
+                            pokemons.get(memberTypeWater).setHealth(270);
+                            pokemons.get(memberTypeWater).setWeight(250);
+                            printProFile.setText(printPokemons(pokemons,memberTypeWater));
                             System.out.print("Croconaw Evolution"+select.getSelectedIndex());
                             break;
                         }
-                        else if(pokemons.get(membershipOfTotodile).level >= 30 && pokemons.get(membershipOfTotodile).getName() == "Totodile"){
+                        else if(pokemons.get(memberTypeWater).level >= 30 && pokemons.get(memberTypeWater).getName() == "Totodile"){
                             pokemonIcon.setIcon(dataIcon5);
-                            pokemons.get(membershipOfTotodile).changeName("Croconaw");
-                            pokemons.get(membershipOfTotodile).changeSkill("Water Gun",10,"Water Pulse",25);
-                            pokemons.get(membershipOfTotodile).setHealth(160);
-                            printProFile.setText(printPokemons(pokemons,membershipOfTotodile));
+                            pokemons.get(memberTypeWater).changeName("Croconaw");
+                            pokemons.get(memberTypeWater).changeSkill("Water Gun",10,"Water Pulse",25);
+                            pokemons.get(memberTypeWater).setHealth(160);
+                            pokemons.get(memberTypeWater).setWeight(100);
+                            printProFile.setText(printPokemons(pokemons,memberTypeWater));
                             System.out.print("Totodile Evolution"+select.getSelectedIndex());
+                            break;
+                        }
+                        else{
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+        });
+        godButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 switch (select.getSelectedIndex()) {
+                    case 0:
+                        if(pokemons.get(memberTypeFire).getGodMode() == "YES" && pokemons.get(memberTypeFire).getName() == "Charizard"){
+                            pokemonIcon.setIcon(dataIconGod1);
+                            pokemons.get(memberTypeFire).changeName("Ho-OH");
+                            pokemons.get(memberTypeFire).changeSkill("Fire Blast(GOD)",70,"Solar Beam(GOD)",100);
+                            pokemons.get(memberTypeFire).setHealth(999);
+                            pokemons.get(memberTypeFire).setWeight(200);
+                            printProFile.setText(printPokemons(pokemons,memberTypeFire));
+                            System.out.print("Trade Success"+select.getSelectedIndex());
+                            break;
+                        }
+                        else{
+                            break;
+                        }
+                    case 1:
+                        if(pokemons.get(memberTypePlant).getGodMode() == "YES" && pokemons.get(memberTypePlant).getName() == "Meganium"){
+                            pokemonIcon.setIcon(dataIconGod2);
+                            pokemons.get(memberTypePlant).changeName("Celebi");
+                            pokemons.get(memberTypePlant).changeSkill("Physic(GOD)",40,"Hyper Beam(GOD)",90);
+                            pokemons.get(memberTypePlant).setHealth(999);
+                            pokemons.get(memberTypePlant).setWeight(40);
+                            printProFile.setText(printPokemons(pokemons,memberTypePlant));
+                            System.out.print("Trade Success"+select.getSelectedIndex());
+                            break;
+                        }
+                        else{
+                            break;
+                        }
+                    case 2:
+                        if(pokemons.get(memberTypeWater).getGodMode() == "YES" && pokemons.get(memberTypeWater).getName() == "Feraligatr"){
+                            pokemonIcon.setIcon(dataIconGod3);
+                            pokemons.get(memberTypeWater).changeName("Lugia");
+                            pokemons.get(memberTypeWater).changeSkill("Sky Attack(GOD)",50,"Hydro Pump(GOD)",90);
+                            pokemons.get(memberTypeWater).setHealth(999);
+                            pokemons.get(memberTypeWater).setWeight(500);
+                            printProFile.setText(printPokemons(pokemons,memberTypeWater));
+                            System.out.print("Trade Success"+select.getSelectedIndex());
                             break;
                         }
                         else{
@@ -400,6 +461,7 @@ public class Command extends JFrame{
         p1.add(battleButton );
         p1.add(exerciseButton);
         p1.add(evoButton);
+        p1.add(godButton);
         showData.add(pokemonIcon);
         showData.add(printProFile);
         c.add(showData, BorderLayout.PAGE_START);
