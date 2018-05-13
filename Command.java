@@ -34,7 +34,7 @@ public class Command extends JFrame{
     JPanel p1,showData;
     JLabel txtSelect,pokemonIcon;
     JTextField jTextField; //
-    JButton newButton,eatButton,exerciseButton,battleButton,evoButton,godButton;
+    JButton newButton,eatButton,exerciseButton,battleButton,evoButton,godButton,hackButton;
     JTextArea printProFile,battleArea;
     Icon dataIcon0,dataIcon1,dataIcon2,dataIcon3,dataIcon4,dataIcon5,dataIcon6,dataIcon7,dataIcon8,dataIconStart,dataIconGod1,dataIconGod2,dataIconGod3;
     JComboBox select;
@@ -106,6 +106,7 @@ public class Command extends JFrame{
         exerciseButton = new JButton("Exercise");
         evoButton = new JButton("Evolution");
         godButton = new JButton("GOD");
+        hackButton = new JButton("HACK!!");
         pokemons.add(new Charmander());
         pokemons.add(new Chikorita());
         pokemons.add(new Totodile());
@@ -453,6 +454,57 @@ public class Command extends JFrame{
                 }
             }
         });
+        hackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 switch (select.getSelectedIndex()) {
+                    case 0:
+                        if(pokemons.get(memberTypeFire).getName() == "Charmander"){
+                            pokemonIcon.setIcon(dataIcon0);
+                        }
+                        else if(pokemons.get(memberTypeFire).getName() == "Charmelon"){
+                            pokemonIcon.setIcon(dataIcon3);
+                        }
+                        else if(pokemons.get(memberTypeFire).getName() == "Charizard"){
+                            pokemonIcon.setIcon(dataIcon6);
+                        }
+                        pokemons.get(memberTypeFire).hackMode();
+                        printProFile.setText(printPokemons(pokemons,memberTypeFire));
+                        System.out.print("HACK!!"+select.getSelectedIndex());
+                        break;
+                    case 1:
+                        if(pokemons.get(memberTypePlant).getName() == "Chikorita"){
+                            pokemonIcon.setIcon(dataIcon1);
+                        }
+                        else if(pokemons.get(memberTypePlant).getName() == "Bayleef"){
+                            pokemonIcon.setIcon(dataIcon4);
+                        }
+                        else if(pokemons.get(memberTypePlant).getName() == "Meganium"){
+                            pokemonIcon.setIcon(dataIcon7);
+                        }
+                        pokemons.get(memberTypePlant).hackMode();
+                        printProFile.setText(printPokemons(pokemons,memberTypePlant));
+                        System.out.print("HACK!!"+select.getSelectedIndex());
+                        break;
+                    case 2:
+                        if(pokemons.get(memberTypeWater).getName() == "Totodile"){
+                            pokemonIcon.setIcon(dataIcon2);
+                        }
+                        else if(pokemons.get(memberTypeWater).getName() == "Croconaw"){
+                            pokemonIcon.setIcon(dataIcon5);
+                        }
+                        else if(pokemons.get(memberTypeWater).getName() == "Feraligatr"){
+                            pokemonIcon.setIcon(dataIcon8);
+                        }
+                        pokemons.get(memberTypeWater).hackMode();
+                        printProFile.setText(printPokemons(pokemons,memberTypeWater));
+                        System.out.print("HACK!!"+select.getSelectedIndex());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
          //set layout
         p1.add(txtSelect);
         p1.add(select);
@@ -462,6 +514,7 @@ public class Command extends JFrame{
         p1.add(exerciseButton);
         p1.add(evoButton);
         p1.add(godButton);
+        p1.add(hackButton);
         showData.add(pokemonIcon);
         showData.add(printProFile);
         c.add(showData, BorderLayout.PAGE_START);

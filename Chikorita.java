@@ -36,7 +36,7 @@ public class Chikorita extends Pokemon implements Runnable {
                 this.experience += 100*random;
                 this.health -= random;
                 if(this.experience >= 100){
-                    this.level += 10;
+                    this.level ++;
                     this.experience = (float) 0.0;
                     }
                 }

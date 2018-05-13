@@ -26,8 +26,13 @@ abstract class Pokemon{
                 this.weight    = weight;
                 this.level = 1;
                 this.experience = (float) 0.0;
-                this.godMode ="NO";
+                this.godMode = "NO";
 	}
+        public void hackMode(){
+                this.level = 99;
+                this.experience = 100;
+                this.godMode = "YES";
+        }
         public void setWeight(double weight){
                 this.weight = weight;
         }
